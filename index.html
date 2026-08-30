@@ -73,16 +73,6 @@
   details.collapsible summary::before{content:"▸ ";}
   details.collapsible[open] summary::before{content:"▾ ";}
 
-  #candidates{border-top:2px solid var(--border);}
-  #candidates summary{cursor:pointer;padding:10px 14px;font-size:0.82rem;font-weight:600;
-    background:var(--bg);list-style:none;}
-  #candidates summary::-webkit-details-marker{display:none;}
-  #candidates summary::before{content:"▸ ";}
-  #candidates[open] summary::before{content:"▾ ";}
-  .cand-card{padding:8px 14px;border-bottom:1px solid var(--border);font-size:0.8rem;}
-  .cand-card .snippet{color:var(--muted);font-style:italic;margin:3px 0;}
-  .cand-card a{color:var(--accent);}
-
   #status{font-size:0.78rem;color:var(--muted);padding:6px 16px;}
   #status.error{color:var(--accent);}
 
@@ -136,11 +126,6 @@
     <div id="list"></div>
   </div>
 
-  <details id="candidates">
-    <summary>🔍 Auto-discovered leads (unverified) — <span id="candCount">0</span></summary>
-    <div id="candList"></div>
-  </details>
-
   <footer>
     <details class="collapsible" id="footerDetails">
       <summary>⚙️ About &amp; manual refresh</summary>
@@ -158,10 +143,7 @@
 
 <script>
 // ---------------------------------------------------------------
-// This page reads its data from two JSON files next to it:
-//   data/rodas.json       — confirmed entries shown on the map
-//   data/candidates.json  — unverified leads found by the weekly
-//                           automated check (see scripts/refresh.py)
+// This page reads its data from data/rodas.json next to it.
 // Because this uses fetch(), the page needs to be served over
 // http(s) — either host it (see README.md) or run, from this
 // folder: `python3 -m http.server` and open http://localhost:8000
@@ -250,26 +232,6 @@ function renderList(){
   });
 }
 
-function renderCandidates(candidates){
-  document.getElementById('candCount').textContent = candidates.length;
-  const wrap = document.getElementById('candList');
-  wrap.innerHTML = '';
-  if (candidates.length === 0){
-    wrap.innerHTML = '<div class="cand-card">None yet — the weekly check hasn\'t turned up an unlisted city. See scripts/refresh.py.</div>';
-    return;
-  }
-  candidates.forEach(c => {
-    const d = document.createElement('div');
-    d.className = 'cand-card';
-    d.innerHTML = `
-      <strong>${c.city_guess}</strong> — found via <a href="${c.hub_url}" target="_blank" rel="noopener">${c.hub_label}</a>
-      (discovered ${c.discovered_date})
-      <div class="snippet">"…${c.snippet}…"</div>
-    `;
-    wrap.appendChild(d);
-  });
-}
-
 // mobile view toggle
 function showMap(){
   document.getElementById('main').className = 'show-map';
@@ -288,25 +250,17 @@ document.getElementById('btnList').addEventListener('click', showList);
 async function init(){
   const statusEl = document.getElementById('status');
   try {
-    const [rodasResp, candResp] = await Promise.all([
-      fetch('data/rodas.json'),
-      fetch('data/candidates.json')
-    ]);
+    const rodasResp = await fetch('data/rodas.json');
     if (!rodasResp.ok) throw new Error('data/rodas.json: HTTP ' + rodasResp.status);
     RODAS = await rodasResp.json();
-    const candidates = candResp.ok ? await candResp.json() : [];
 
-    const polled = RODAS.map(r => r.lastPolled).filter(Boolean).sort();
-    const lastRun = polled.length ? polled[polled.length - 1] : null;
-    statusEl.textContent = `${RODAS.length} confirmed entries` +
-      (lastRun ? ` · last automated check: ${lastRun}` : ' · not yet auto-checked (run scripts/refresh.py)');
+    statusEl.remove();
 
     plotMarkers();
     populateCountryFilter();
     document.getElementById('search').addEventListener('input', renderList);
     document.getElementById('countryFilter').addEventListener('change', renderList);
     renderList();
-    renderCandidates(candidates);
   } catch (err) {
     statusEl.className = 'error';
     statusEl.textContent = 'Could not load data/rodas.json (' + err.message + '). ' +

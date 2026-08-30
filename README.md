@@ -7,9 +7,9 @@ no subscription, and no social media account** required to keep running.
 
 ## Running it
 
-The map's data lives separately, in `data/rodas.json` and
-`data/candidates.json`, so the automated weekly check (below) has
-something to update on its own. That means `index.html` needs to be
+The map's data lives separately, in `data/rodas.json`, so the automated
+weekly check (below) has something to update on its own. That means
+`index.html` needs to be
 served over http(s) rather than opened directly — double-clicking the
 file will show a "could not load data" message, since browsers block
 that kind of file loading for plain local files.
@@ -21,40 +21,15 @@ enough to preview and test changes. The automation only does anything
 useful once this is hosted somewhere with GitHub Actions attached to
 it — that part isn't covered here.
 
-## What's covered right now
-
-31 confirmed entries across 11 countries: Portugal, France, United
-Kingdom, Belgium, Germany, Netherlands, Austria, Spain, Italy, Denmark,
-and Ireland. See the map's own legend for what each confidence-level
-color means. The map itself shows each entry as a confidence dot plus its
-check/follow links, kept deliberately free of longer descriptions —
-`notes` in the data file below is where any extra research context lives.
-
 ## Automated weekly refresh
 
-There are two moving pieces, both free, both running on GitHub's
-infrastructure once you've hosted the repo there:
-
-**1. Re-checking entries you already have.** Every Monday, a GitHub
-Actions job (`.github/workflows/refresh.yml`) runs `scripts/refresh.py`,
-which revisits every entry's `checkUrl` — skipping any that point to
-Facebook or Instagram, since those can't be fetched without logging in —
-and compares the page's text to what it saw last time. If it changed, the
-entry gets a blue **"changed"** badge on the map so you know to go look,
-plus a `lastPolled` date. It does *not* try to understand what changed —
-that's still a human judgment call.
-
-**2. Looking for brand-new cities/venues.** The same weekly run also
-scans a short curated list of public, no-login "hub" sources — city
-cultural agendas, club umbrella sites, and public event-search pages
-(Eventbrite, Songkick) — for the word "choro" appearing near a European
-city name that isn't already on the map. Anything new gets appended to
-`data/candidates.json` as an **unverified lead**, shown in the
-collapsible "🔍 Auto-discovered leads" section at the bottom of the page.
-Candidates are never auto-promoted to the map — you (or an AI assistant,
-or a friend) check the source link and, if it's real, copy it into
-`data/rodas.json` in the same format as the other entries, using the
-lead's source link as the new `checkUrl`.
+Every Monday, a GitHub Actions job (`.github/workflows/refresh.yml`) runs
+`scripts/refresh.py`, which revisits every entry's `checkUrl` — skipping
+any that point to Facebook or Instagram, since those can't be fetched
+without logging in — and compares the page's text to what it saw last
+time. If it changed, the entry gets a blue **"changed"** badge on the map
+so you know to go look, plus a `lastPolled` date. It does *not* try to
+understand what changed — that's still a human judgment call.
 
 **Triggering it manually.** The workflow already has `workflow_dispatch: {}`
 turned on, which gives you a **"Run workflow"** button on GitHub itself —
@@ -72,11 +47,10 @@ Actions UI (one extra click, using your own logged-in session) avoids that
 risk entirely.
 
 **What this does *not* do:** it can't read Facebook or Instagram — this
-project deliberately avoids requiring any social media login — and the
-hub-source list is intentionally small and curated rather than "search
-the whole internet" — that would need a paid search/AI API. You can grow
-`HUB_SOURCES` in `scripts/refresh.py` over time as you find more good
-public listing pages.
+project deliberately avoids requiring any social media login — and it
+only re-checks entries already in `data/rodas.json`; it doesn't go
+looking for brand-new cities or venues on its own. Finding new entries is
+still a manual research step.
 
 ## Updating things by hand
 
@@ -107,11 +81,6 @@ brand-new entry — the weekly job fills those in on its own. Get `lat`/`lon`
 for a city by searching e.g. "Porto latitude longitude". Save the file and
 push/re-upload it to GitHub.
 
-**To promote a candidate:** open `data/candidates.json`, find the entry,
-open its `hub_url` to verify it's real, then write a proper entry for it
-in `data/rodas.json` (as above) and delete the candidate's block from
-`data/candidates.json`.
-
 ### Field meanings
 - **confidenceLevel** — `high` = active organization with its own real
   website/contact; `medium` = confirmed to exist but the exact schedule is
@@ -136,7 +105,5 @@ in `data/rodas.json` (as above) and delete the candidate's block from
 Nothing here is specific to choro or to Europe — the map, the data
 schema, and the weekly refresh script all work the same way for any
 recurring event type in any region. To repurpose it: replace the
-entries in `data/rodas.json` with your own, swap the map's starting
-view and title in `index.html`, and update `HUB_SOURCES` /
-`CITY_KEYWORDS` in `scripts/refresh.py` to match the sources and
-places relevant to your own search.
+entries in `data/rodas.json` with your own and swap the map's starting
+view and title in `index.html`.
