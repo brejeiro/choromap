@@ -54,9 +54,7 @@
   .card a:hover{text-decoration:underline;}
   .card .notes{font-size:0.78rem;color:var(--muted);margin-top:4px;}
 
-  footer{padding:8px 16px;border-top:1px solid var(--border);background:var(--panel);
-    font-size:0.72rem;color:var(--muted);}
-  footer a{color:var(--accent);}
+  footer{background:var(--panel);}
   .footer-action{display:inline-block;padding:5px 10px;border-radius:6px;border:1px solid var(--border);
     background:var(--bg);text-decoration:none;font-size:0.75rem;}
   .footer-action:hover{border-color:var(--accent);}
@@ -65,8 +63,15 @@
   .leaflet-popup-content h3{margin:0 0 4px;font-size:0.95rem;}
 
   #legend{display:flex;gap:12px;flex-wrap:wrap;padding:6px 16px;font-size:0.72rem;color:var(--muted);
-    border-bottom:1px solid var(--border);background:var(--panel);}
+    background:var(--panel);}
   #legend span{display:inline-flex;align-items:center;gap:5px;}
+
+  details.collapsible{border-top:1px solid var(--border);background:var(--panel);}
+  details.collapsible summary{cursor:pointer;padding:8px 16px;font-size:0.8rem;font-weight:600;
+    list-style:none;background:var(--bg);}
+  details.collapsible summary::-webkit-details-marker{display:none;}
+  details.collapsible summary::before{content:"▸ ";}
+  details.collapsible[open] summary::before{content:"▾ ";}
 
   #candidates{border-top:2px solid var(--border);}
   #candidates summary{cursor:pointer;padding:10px 14px;font-size:0.82rem;font-weight:600;
@@ -81,8 +86,10 @@
   #status{font-size:0.78rem;color:var(--muted);padding:6px 16px;}
   #status.error{color:var(--accent);}
 
-  #disclaimer{font-size:0.72rem;color:var(--muted);padding:6px 16px;border-bottom:1px solid var(--border);
-    background:var(--panel);}
+  #disclaimer{font-size:0.72rem;color:var(--muted);padding:6px 16px;background:var(--panel);}
+
+  #footerDetails .footer-inner{padding:8px 16px;font-size:0.72rem;color:var(--muted);}
+  #footerDetails .footer-inner a{color:var(--accent);}
 
   @media (max-width: 760px){
     #main{flex-direction:column;}
@@ -104,14 +111,16 @@
 
   <div id="status">Loading data…</div>
 
-  <div id="legend">
-    <span><span class="dot" style="background:var(--green)"></span> High confidence — verified via the organizer's own website, venue, or direct contact</span>
-    <span><span class="dot" style="background:var(--amber)"></span> Medium confidence — confirmed to exist, but schedule is irregular, seasonal, or loosely documented</span>
-    <span><span class="dot" style="background:var(--orange)"></span> Low confidence — based on a single social post or indirect mention; confirm before you travel</span>
-    <span><span class="badge changed" style="position:static;">changed</span> = page content changed since last automated check</span>
-  </div>
-
-  <div id="disclaimer">This map was researched and is maintained with the help of an AI assistant. Every entry has been checked against publicly available sources, but details can still be incomplete, outdated, or mistaken — please verify independently before making travel plans.</div>
+  <details class="collapsible" id="infoDetails">
+    <summary>ℹ️ Legend &amp; about this map</summary>
+    <div id="legend">
+      <span><span class="dot" style="background:var(--green)"></span> High confidence — verified via the organizer's own website, venue, or direct contact</span>
+      <span><span class="dot" style="background:var(--amber)"></span> Medium confidence — confirmed to exist, but schedule is irregular, seasonal, or loosely documented</span>
+      <span><span class="dot" style="background:var(--orange)"></span> Low confidence — based on a single social post or indirect mention; confirm before you travel</span>
+      <span><span class="badge changed" style="position:static;">changed</span> = page content changed since last automated check</span>
+    </div>
+    <div id="disclaimer">This map was researched and is maintained with the help of an AI assistant. Every entry has been checked against publicly available sources, but details can still be incomplete, outdated, or mistaken — please verify independently before making travel plans.</div>
+  </details>
 
   <div id="controls">
     <input id="search" type="text" placeholder="Search city, venue, group…">
@@ -133,12 +142,17 @@
   </details>
 
   <footer>
-    Made for personal travel use. See <strong>README.md</strong> for how this list updates itself (a free weekly
-    check, no login/social media involved) and how to edit or host it.
-    Data compiled via public web search — not affiliated with any of the groups listed.
-    <div style="margin-top:6px;">
-      <a id="refreshLink" class="footer-action" href="https://github.com/brejeiro/brejeiro.github.io/actions/workflows/refresh.yml" target="_blank" rel="noopener">⟳ Run the refresh manually on GitHub</a>
-    </div>
+    <details class="collapsible" id="footerDetails">
+      <summary>⚙️ About &amp; manual refresh</summary>
+      <div class="footer-inner">
+        Made for personal travel use. See <strong>README.md</strong> for how this list updates itself (a free weekly
+        check, no login/social media involved) and how to edit or host it.
+        Data compiled via public web search — not affiliated with any of the groups listed.
+        <div style="margin-top:6px;">
+          <a id="refreshLink" class="footer-action" href="https://github.com/brejeiro/brejeiro.github.io/actions/workflows/refresh.yml" target="_blank" rel="noopener">⟳ Run the refresh manually on GitHub</a>
+        </div>
+      </div>
+    </details>
   </footer>
 </div>
 
