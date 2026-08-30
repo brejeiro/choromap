@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Choro Map — Europe</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎷</text></svg>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<style>
+  :root{
+    --bg:#faf7f2; --panel:#ffffff; --ink:#2b2420; --muted:#75695f; --border:#e6ddd2;
+    --accent:#b5502f; --accent2:#7a8b5c;
+    --green:#4c8a5a; --amber:#c98a1f; --orange:#c0562b; --gray:#8d8378; --blue:#3d6d99;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#1c1815; --panel:#262019; --ink:#f1e9df; --muted:#b9ab9c; --border:#3a3128; }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  #app{display:flex;flex-direction:column;height:100vh;height:100dvh;}
+
+  header{padding:12px 16px;border-bottom:1px solid var(--border);background:var(--panel);}
+  header h1{font-size:1.05rem;margin:0 0 2px;}
+  header p{font-size:0.8rem;color:var(--muted);margin:0;}
+  header .warn{color:var(--accent);font-weight:600;}
+
+  #controls{display:flex;gap:8px;padding:10px 16px;border-bottom:1px solid var(--border);
+    background:var(--panel);flex-wrap:wrap;align-items:center;}
+  #controls input, #controls select{
+    font-size:0.85rem;padding:7px 10px;border-radius:8px;border:1px solid var(--border);
+    background:var(--bg);color:var(--ink);flex:1;min-width:120px;}
+  #viewToggle{display:none;gap:6px;}
+  #viewToggle button{padding:7px 12px;border-radius:8px;border:1px solid var(--border);
+    background:var(--bg);color:var(--ink);font-size:0.8rem;}
+  #viewToggle button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+  #main{flex:1;display:flex;min-height:0;}
+  #map{flex:1.3;min-height:0;}
+  #list{flex:1;min-height:0;overflow-y:auto;background:var(--panel);border-left:1px solid var(--border);}
+  #list .country-group{padding:8px 14px 2px;font-size:0.72rem;text-transform:uppercase;
+    letter-spacing:0.06em;color:var(--muted);position:sticky;top:0;background:var(--panel);}
+  .card{padding:10px 14px;border-bottom:1px solid var(--border);cursor:pointer;}
+  .card:hover{background:var(--bg);}
+  .card h3{margin:0 0 3px;font-size:0.92rem;display:flex;align-items:center;gap:6px;}
+  .dot{width:9px;height:9px;border-radius:50%;flex:none;display:inline-block;}
+  .card .place{font-size:0.8rem;color:var(--muted);margin:0 0 4px;}
+  .card .freq{font-size:0.8rem;margin:0 0 4px;}
+  .badge{display:inline-block;font-size:0.68rem;padding:2px 7px;border-radius:999px;
+    background:var(--bg);border:1px solid var(--border);color:var(--muted);margin-right:4px;}
+  .badge.changed{color:#fff;background:var(--blue);border-color:var(--blue);}
+  .card a{color:var(--accent);font-size:0.8rem;text-decoration:none;}
+  .card a:hover{text-decoration:underline;}
+  .card .notes{font-size:0.78rem;color:var(--muted);margin-top:4px;}
+
+  footer{padding:8px 16px;border-top:1px solid var(--border);background:var(--panel);
+    font-size:0.72rem;color:var(--muted);}
+  footer a{color:var(--accent);}
+  .footer-action{display:inline-block;padding:5px 10px;border-radius:6px;border:1px solid var(--border);
+    background:var(--bg);text-decoration:none;font-size:0.75rem;}
+  .footer-action:hover{border-color:var(--accent);}
+
+  .leaflet-popup-content{font-size:0.85rem;max-width:230px;}
+  .leaflet-popup-content h3{margin:0 0 4px;font-size:0.95rem;}
+
+  #legend{display:flex;gap:12px;flex-wrap:wrap;padding:6px 16px;font-size:0.72rem;color:var(--muted);
+    border-bottom:1px solid var(--border);background:var(--panel);}
+  #legend span{display:inline-flex;align-items:center;gap:5px;}
+
+  #candidates{border-top:2px solid var(--border);}
+  #candidates summary{cursor:pointer;padding:10px 14px;font-size:0.82rem;font-weight:600;
+    background:var(--bg);list-style:none;}
+  #candidates summary::-webkit-details-marker{display:none;}
+  #candidates summary::before{content:"▸ ";}
+  #candidates[open] summary::before{content:"▾ ";}
+  .cand-card{padding:8px 14px;border-bottom:1px solid var(--border);font-size:0.8rem;}
+  .cand-card .snippet{color:var(--muted);font-style:italic;margin:3px 0;}
+  .cand-card a{color:var(--accent);}
+
+  #status{font-size:0.78rem;color:var(--muted);padding:6px 16px;}
+  #status.error{color:var(--accent);}
+
+  #disclaimer{font-size:0.72rem;color:var(--muted);padding:6px 16px;border-bottom:1px solid var(--border);
+    background:var(--panel);}
+
+  @media (max-width: 760px){
+    #main{flex-direction:column;}
+    #viewToggle{display:flex;}
+    #map{flex:none;height:100%;}
+    #list{flex:none;height:100%;border-left:none;border-top:1px solid var(--border);}
+    #main.show-map #list{display:none;}
+    #main.show-list #map{display:none;}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header>
+    <h1>🎷 Choro Map — Europe</h1>
+    <p>Community-sourced list of choro jam sessions, clubs &amp; organizers across Europe. <span class="warn">Schedules change often — always confirm before you travel.</span></p>
+  </header>
+
+  <div id="status">Loading data…</div>
+
+  <div id="legend">
+    <span><span class="dot" style="background:var(--green)"></span> High confidence — verified via the organizer's own website, venue, or direct contact</span>
+    <span><span class="dot" style="background:var(--amber)"></span> Medium confidence — confirmed to exist, but schedule is irregular, seasonal, or loosely documented</span>
+    <span><span class="dot" style="background:var(--orange)"></span> Low confidence — based on a single social post or indirect mention; confirm before you travel</span>
+    <span><span class="badge changed" style="position:static;">changed</span> = page content changed since last automated check</span>
+  </div>
+
+  <div id="disclaimer">This map was researched and is maintained with the help of an AI assistant. Every entry has been checked against publicly available sources, but details can still be incomplete, outdated, or mistaken — please verify independently before making travel plans.</div>
+
+  <div id="controls">
+    <input id="search" type="text" placeholder="Search city, venue, group…">
+    <select id="countryFilter"><option value="">All countries</option></select>
+    <div id="viewToggle">
+      <button id="btnMap" class="active">Map</button>
+      <button id="btnList">List</button>
+    </div>
+  </div>
+
+  <div id="main" class="show-map">
+    <div id="map"></div>
+    <div id="list"></div>
+  </div>
+
+  <details id="candidates">
+    <summary>🔍 Auto-discovered leads (unverified) — <span id="candCount">0</span></summary>
+    <div id="candList"></div>
+  </details>
+
+  <footer>
+    Made for personal travel use. See <strong>README.md</strong> for how this list updates itself (a free weekly
+    check, no login/social media involved) and how to edit or host it.
+    Data compiled via public web search — not affiliated with any of the groups listed.
+    <div style="margin-top:6px;">
+      <a id="refreshLink" class="footer-action" href="https://github.com/brejeiro/brejeiro.github.io/actions/workflows/refresh.yml" target="_blank" rel="noopener">⟳ Run the refresh manually on GitHub</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+// ---------------------------------------------------------------
+// This page reads its data from two JSON files next to it:
+//   data/rodas.json       — confirmed entries shown on the map
+//   data/candidates.json  — unverified leads found by the weekly
+//                           automated check (see scripts/refresh.py)
+// Because this uses fetch(), the page needs to be served over
+// http(s) — either host it (see README.md) or run, from this
+// folder: `python3 -m http.server` and open http://localhost:8000
+// ---------------------------------------------------------------
+
+const cssColor = r => r.confidenceLevel === "high" ? "#4c8a5a"
+  : r.confidenceLevel === "medium" ? "#c98a1f"
+  : "#c0562b";
+
+const map = L.map('map', {scrollWheelZoom:true}).setView([48.5, 5], 5);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+const markers = {};
+let RODAS = [];
+
+function popupHtml(r){
+  const changed = r.changedSinceLastCheck ? '<span class="badge changed">changed</span>' : '';
+  const social = r.socialUrl ? `<div style="margin-top:4px;"><a href="${r.socialUrl}" target="_blank" rel="noopener">Follow: ${r.socialLabel}</a></div>` : '';
+  return `<h3>${r.name}</h3>
+    <div><strong>Venue:</strong> ${r.venue}</div>
+    <div style="margin:4px 0;"><strong>Frequency:</strong> ${r.frequency}</div>
+    ${changed}
+    <div style="margin-top:6px;"><a href="${r.checkUrl}" target="_blank" rel="noopener">${r.checkUrlLabel}</a></div>
+    ${social}
+    ${r.lastChecked ? `<div style="margin-top:4px;font-size:0.75rem;color:var(--muted);">Last verified: ${r.lastChecked}</div>` : ''}`;
+}
+
+function plotMarkers(){
+  RODAS.forEach((r, i) => {
+    const m = L.circleMarker([r.lat, r.lon], {
+      radius: 8, color: cssColor(r), fillColor: cssColor(r), fillOpacity: 0.85, weight: 2
+    }).addTo(map).bindPopup(popupHtml(r));
+    markers[i] = m;
+  });
+}
+
+function populateCountryFilter(){
+  const countries = [...new Set(RODAS.map(r => r.country))].sort();
+  const sel = document.getElementById('countryFilter');
+  countries.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c; opt.textContent = c;
+    sel.appendChild(opt);
+  });
+}
+
+function renderList(){
+  const q = document.getElementById('search').value.toLowerCase();
+  const country = document.getElementById('countryFilter').value;
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+  let lastCountry = null;
+  RODAS.forEach((r, i) => {
+    if (country && r.country !== country) return;
+    const hay = (r.name + ' ' + r.city + ' ' + r.country + ' ' + r.venue).toLowerCase();
+    if (q && !hay.includes(q)) return;
+    if (r.country !== lastCountry){
+      const h = document.createElement('div');
+      h.className = 'country-group';
+      h.textContent = r.country;
+      list.appendChild(h);
+      lastCountry = r.country;
+    }
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <h3><span class="dot" style="background:${cssColor(r)}"></span>${r.name}</h3>
+      <div class="place">${r.city}</div>
+      <div class="freq"><strong>Venue:</strong> ${r.venue}</div>
+      <div class="freq"><strong>Frequency:</strong> ${r.frequency}</div>
+      ${r.changedSinceLastCheck ? '<span class="badge changed">changed</span>' : ''}
+      <div style="margin-top:4px;"><a href="${r.checkUrl}" target="_blank" rel="noopener">${r.checkUrlLabel}</a></div>
+      ${r.socialUrl ? `<div style="margin-top:2px;"><a href="${r.socialUrl}" target="_blank" rel="noopener">Follow: ${r.socialLabel}</a></div>` : ''}
+      ${r.lastPolled ? `<div class="notes">Last automated check: ${r.lastPolled}${r.lastChecked ? ' · Last human-verified: ' + r.lastChecked : ''}</div>` : (r.lastChecked ? `<div class="notes">Last human-verified: ${r.lastChecked}</div>` : '')}
+    `;
+    card.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') return;
+      map.setView([r.lat, r.lon], 12);
+      markers[i].openPopup();
+      if (window.innerWidth <= 760){ showMap(); }
+    });
+    list.appendChild(card);
+  });
+}
+
+function renderCandidates(candidates){
+  document.getElementById('candCount').textContent = candidates.length;
+  const wrap = document.getElementById('candList');
+  wrap.innerHTML = '';
+  if (candidates.length === 0){
+    wrap.innerHTML = '<div class="cand-card">None yet — the weekly check hasn\'t turned up an unlisted city. See scripts/refresh.py.</div>';
+    return;
+  }
+  candidates.forEach(c => {
+    const d = document.createElement('div');
+    d.className = 'cand-card';
+    d.innerHTML = `
+      <strong>${c.city_guess}</strong> — found via <a href="${c.hub_url}" target="_blank" rel="noopener">${c.hub_label}</a>
+      (discovered ${c.discovered_date})
+      <div class="snippet">"…${c.snippet}…"</div>
+    `;
+    wrap.appendChild(d);
+  });
+}
+
+// mobile view toggle
+function showMap(){
+  document.getElementById('main').className = 'show-map';
+  document.getElementById('btnMap').classList.add('active');
+  document.getElementById('btnList').classList.remove('active');
+  setTimeout(()=>map.invalidateSize(), 50);
+}
+function showList(){
+  document.getElementById('main').className = 'show-list';
+  document.getElementById('btnList').classList.add('active');
+  document.getElementById('btnMap').classList.remove('active');
+}
+document.getElementById('btnMap').addEventListener('click', showMap);
+document.getElementById('btnList').addEventListener('click', showList);
+
+async function init(){
+  const statusEl = document.getElementById('status');
+  try {
+    const [rodasResp, candResp] = await Promise.all([
+      fetch('data/rodas.json'),
+      fetch('data/candidates.json')
+    ]);
+    if (!rodasResp.ok) throw new Error('data/rodas.json: HTTP ' + rodasResp.status);
+    RODAS = await rodasResp.json();
+    const candidates = candResp.ok ? await candResp.json() : [];
+
+    const polled = RODAS.map(r => r.lastPolled).filter(Boolean).sort();
+    const lastRun = polled.length ? polled[polled.length - 1] : null;
+    statusEl.textContent = `${RODAS.length} confirmed entries` +
+      (lastRun ? ` · last automated check: ${lastRun}` : ' · not yet auto-checked (run scripts/refresh.py)');
+
+    plotMarkers();
+    populateCountryFilter();
+    document.getElementById('search').addEventListener('input', renderList);
+    document.getElementById('countryFilter').addEventListener('change', renderList);
+    renderList();
+    renderCandidates(candidates);
+  } catch (err) {
+    statusEl.className = 'error';
+    statusEl.textContent = 'Could not load data/rodas.json (' + err.message + '). ' +
+      'This page needs to be served over http(s) — see README.md ("Opening it").';
+    console.error(err);
+  }
+}
+init();
+</script>
+</body>
+</html>

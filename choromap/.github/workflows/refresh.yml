@@ -1,0 +1,39 @@
+name: Weekly roda de choro refresh
+
+on:
+  schedule:
+    # Every Monday at 06:17 UTC. GitHub may delay this by a few minutes/hours
+    # at busy times — that's normal and fine for a weekly, non-urgent job.
+    - cron: "17 6 * * 1"
+  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run refresh script
+        run: python3 scripts/refresh.py
+
+      - name: Commit changes if anything updated
+        run: |
+          git config user.name "roda-map-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/rodas.json data/candidates.json
+          if git diff --cached --quiet; then
+            echo "No changes this run."
+          else
+            git commit -m "Automated weekly refresh"
+            git push
+          fi
