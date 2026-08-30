@@ -16,7 +16,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/clubedochorodelisboa/",
-    "socialLabel": "Instagram"
+    "socialLabel": "Instagram",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Clube do Choro do Porto",
@@ -35,7 +37,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/clubedochoroporto/",
-    "socialLabel": "Facebook"
+    "socialLabel": "Facebook",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Club du Choro de Paris",
@@ -54,7 +58,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/clubduchorodeparis/",
-    "socialLabel": "Instagram"
+    "socialLabel": "Instagram",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "La Roda de l'Ouest",
@@ -73,7 +79,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": null,
-    "socialLabel": null
+    "socialLabel": null,
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Roda de Choro des Lauriers",
@@ -92,7 +100,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": null,
-    "socialLabel": null
+    "socialLabel": null,
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "London Choro Festival",
@@ -111,7 +121,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/londonchorofestival/",
-    "socialLabel": "Instagram"
+    "socialLabel": "Instagram",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Choro East",
@@ -130,7 +142,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/choroeast/",
-    "socialLabel": "Instagram"
+    "socialLabel": "Instagram",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Zucca Roda de Choro",
@@ -149,7 +163,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/regionaldografton/",
-    "socialLabel": "Instagram"
+    "socialLabel": "Instagram",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "GC Pianofabriek — Roda de Choro",
@@ -168,7 +184,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/gc_pianofabriek/",
-    "socialLabel": "Instagram"
+    "socialLabel": "Instagram",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Berliner Roda de Choro",
@@ -188,7 +206,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/berlinerrodadechoro/",
-    "socialLabel": "Facebook"
+    "socialLabel": "Facebook",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Roda de Choro City West (Musikschule City West)",
@@ -207,7 +227,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/events/torstrasse-159-10115-berlin-germany/roda-de-choro-city-west/1369005844459886/",
-    "socialLabel": "Facebook"
+    "socialLabel": "Facebook",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Roda de Choro @ Splendor Amsterdam",
@@ -227,7 +249,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/splendoramsterdam/",
-    "socialLabel": "Instagram"
+    "socialLabel": "Instagram",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Wiener Choro Klub",
@@ -246,7 +270,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": null,
-    "socialLabel": null
+    "socialLabel": null,
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Roda de Choro de Madrid",
@@ -265,7 +291,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": null,
-    "socialLabel": null
+    "socialLabel": null,
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Los Choros de Madrid",
@@ -284,7 +312,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/choromadrid/",
-    "socialLabel": "Facebook"
+    "socialLabel": "Facebook",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Roda de Choro (Centres Cívics de Barcelona)",
@@ -303,7 +333,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/CentresCivicsBCN/",
-    "socialLabel": "Facebook"
+    "socialLabel": "Facebook",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Clube do Choro de Torino",
@@ -322,7 +354,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/marcoruviaro/",
-    "socialLabel": "Instagram"
+    "socialLabel": "Instagram",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Roda de Choro — Corte dei Miracoli",
@@ -341,7 +375,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/associazionelataiga/",
-    "socialLabel": "Facebook"
+    "socialLabel": "Facebook",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Chora Cambridge",
@@ -360,7 +396,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/choracambridge/",
-    "socialLabel": "Instagram"
+    "socialLabel": "Instagram",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Roda de Choro @ The Harrison",
@@ -379,7 +417,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": null,
-    "socialLabel": null
+    "socialLabel": null,
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Choro München",
@@ -398,7 +438,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/choromuenchen/",
-    "socialLabel": "Instagram"
+    "socialLabel": "Instagram",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Festival de Chôro München",
@@ -417,7 +459,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": null,
-    "socialLabel": null
+    "socialLabel": null,
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Roda de Choro (OBA)",
@@ -436,7 +480,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/obamusic1/",
-    "socialLabel": "Facebook"
+    "socialLabel": "Facebook",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Regional Massapê",
@@ -455,7 +501,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": null,
-    "socialLabel": null
+    "socialLabel": null,
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Roda de Choro (rotating venues)",
@@ -474,7 +522,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/p/Quero-Quero-Choro-100063463301140/",
-    "socialLabel": "Facebook"
+    "socialLabel": "Facebook",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Roda de Choro de Marseille (Zoumaï)",
@@ -493,7 +543,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": null,
-    "socialLabel": null
+    "socialLabel": null,
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Roda de Choro & Samba",
@@ -503,16 +555,18 @@
     "lon": -1.5491,
     "venue": "Not specified on the listing",
     "frequency": "Unconfirmed — funded as an ongoing project rather than tied to one publicized recurring date.",
-    "confidenceLevel": "medium",
-    "checkUrl": "https://www.visitleeds.co.uk/whats-on/all-events/roda-de-choro-samba/",
-    "checkUrlLabel": "Visit Leeds",
-    "notes": "Funded by Leeds City Council through the Leeds Cultural Investment Programme, which is a solid legitimacy signal — but the listing itself doesn't publish a venue or schedule, so check this page directly for current dates. No dedicated organizer social account found — the Visit Leeds page is the only lead so far.",
+    "confidenceLevel": "low",
+    "checkUrl": "https://www.visitleeds.co.uk/whats-on/all-events/",
+    "checkUrlLabel": "Visit Leeds — What's On (search 'choro')",
+    "notes": "Funded by Leeds City Council through the Leeds Cultural Investment Programme, which is a solid legitimacy signal for the underlying project. However, the specific listing page this entry used to link to (visitleeds.co.uk/.../roda-de-choro-samba/) has gone offline (404) as of 2026-08-30, and a search for a replacement dedicated page or organizer social account (search engines, Jazz Leeds listings, Leeds Cultural Investment Programme news) turned up nothing current. checkUrl now points to Visit Leeds' own live \"What's On\" listings page as a working fallback — search \"choro\" there by hand to see if the event has resurfaced under a new listing before relying on this entry.",
     "lastChecked": "2026-08-30",
     "contentHash": null,
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": null,
-    "socialLabel": null
+    "socialLabel": null,
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Roda de Choro de Dresden",
@@ -531,7 +585,9 @@
     "lastChecked": "2026-08-30",
     "contentHash": null,
     "lastPolled": null,
-    "changedSinceLastCheck": false
+    "changedSinceLastCheck": false,
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Conjunto Choro di Napoli",
@@ -550,7 +606,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": null,
-    "socialLabel": null
+    "socialLabel": null,
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Circolo Odeòn (Roda de Choro Bologna)",
@@ -570,7 +628,9 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": null,
-    "socialLabel": null
+    "socialLabel": null,
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   },
   {
     "name": "Choro Camp Italia",
@@ -590,6 +650,8 @@
     "lastPolled": null,
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/chorocamp.italia/",
-    "socialLabel": "Instagram"
+    "socialLabel": "Instagram",
+    "lastFetchStatus": null,
+    "consecutiveFailures": 0
   }
 ]

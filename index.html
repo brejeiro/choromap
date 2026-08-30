@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Choro Map — Europe</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎷</text></svg>">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
@@ -14,7 +14,8 @@
     --green:#4c8a5a; --amber:#c98a1f; --orange:#c0562b; --gray:#8d8378; --blue:#3d6d99;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --bg:#1c1815; --panel:#262019; --ink:#f1e9df; --muted:#b9ab9c; --border:#3a3128; }
+    :root{ --bg:#1c1815; --panel:#262019; --ink:#f1e9df; --muted:#b9ab9c; --border:#3a3128;
+      --accent:#d57b5d; }
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;height:100%;background:var(--bg);color:var(--ink);
@@ -50,6 +51,7 @@
   .badge{display:inline-block;font-size:0.68rem;padding:2px 7px;border-radius:999px;
     background:var(--bg);border:1px solid var(--border);color:var(--muted);margin-right:4px;}
   .badge.changed{color:#fff;background:var(--blue);border-color:var(--blue);}
+  .badge.unreachable{color:#fff;background:var(--gray);border-color:var(--gray);}
   .card a{color:var(--accent);font-size:0.8rem;text-decoration:none;}
   .card a:hover{text-decoration:underline;}
   .card .notes{font-size:0.78rem;color:var(--muted);margin-top:4px;}
@@ -84,6 +86,8 @@
   @media (max-width: 760px){
     #main{flex-direction:column;}
     #viewToggle{display:flex;}
+    #viewToggle button{min-height:44px;padding:10px 14px;}
+    .footer-action{min-height:44px;padding:10px 14px;display:inline-flex;align-items:center;}
     #map{flex:none;height:100%;}
     #list{flex:none;height:100%;border-left:none;border-top:1px solid var(--border);}
     #main.show-map #list{display:none;}
@@ -164,11 +168,13 @@ let RODAS = [];
 
 function popupHtml(r){
   const changed = r.changedSinceLastCheck ? '<span class="badge changed">changed</span>' : '';
+  const unreachable = (r.consecutiveFailures || 0) >= 2 ? '<span class="badge unreachable">link unreachable</span>' : '';
   const social = r.socialUrl ? `<div style="margin-top:4px;"><a href="${r.socialUrl}" target="_blank" rel="noopener">Follow: ${r.socialLabel}</a></div>` : '';
   return `<h3>${r.name}</h3>
     <div><strong>Venue:</strong> ${r.venue}</div>
     <div style="margin:4px 0;"><strong>Frequency:</strong> ${r.frequency}</div>
     ${changed}
+    ${unreachable}
     <div style="margin-top:6px;"><a href="${r.checkUrl}" target="_blank" rel="noopener">${r.checkUrlLabel}</a></div>
     ${social}
     ${r.lastChecked ? `<div style="margin-top:4px;font-size:0.75rem;color:var(--muted);">Last verified: ${r.lastChecked}</div>` : ''}`;
@@ -176,9 +182,16 @@ function popupHtml(r){
 
 function plotMarkers(){
   RODAS.forEach((r, i) => {
+    const popup = popupHtml(r);
+    // Larger invisible hit-area circle, added first (so it sits underneath
+    // the visible dot), purely so the tappable area on touch devices is
+    // bigger than the small dot itself — the dot's own size is unchanged.
+    L.circleMarker([r.lat, r.lon], {
+      radius: 22, stroke: false, fillOpacity: 0, interactive: true
+    }).addTo(map).bindPopup(popup);
     const m = L.circleMarker([r.lat, r.lon], {
       radius: 8, color: cssColor(r), fillColor: cssColor(r), fillOpacity: 0.85, weight: 2
-    }).addTo(map).bindPopup(popupHtml(r));
+    }).addTo(map).bindPopup(popup);
     markers[i] = m;
   });
 }
@@ -218,6 +231,7 @@ function renderList(){
       <div class="freq"><strong>Venue:</strong> ${r.venue}</div>
       <div class="freq"><strong>Frequency:</strong> ${r.frequency}</div>
       ${r.changedSinceLastCheck ? '<span class="badge changed">changed</span>' : ''}
+      ${(r.consecutiveFailures || 0) >= 2 ? '<span class="badge unreachable">link unreachable</span>' : ''}
       <div style="margin-top:4px;"><a href="${r.checkUrl}" target="_blank" rel="noopener">${r.checkUrlLabel}</a></div>
       ${r.socialUrl ? `<div style="margin-top:2px;"><a href="${r.socialUrl}" target="_blank" rel="noopener">Follow: ${r.socialLabel}</a></div>` : ''}
       ${r.lastPolled ? `<div class="notes">Last automated check: ${r.lastPolled}${r.lastChecked ? ' · Last human-verified: ' + r.lastChecked : ''}</div>` : (r.lastChecked ? `<div class="notes">Last human-verified: ${r.lastChecked}</div>` : '')}

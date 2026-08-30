@@ -74,16 +74,28 @@ def robots_allows(url):
 
 
 def fetch_text(url):
+    """Returns (html_text_or_None, status_label). status_label is "ok" on
+    success, or a short string describing why it failed: an HTTP status
+    code as a string (e.g. "404", "403"), "timeout", "connection-error",
+    "robots-disallowed", or "error" for anything else unexpected."""
     if not robots_allows(url):
         print(f"  skip (robots.txt disallows): {url}")
-        return None
+        return None, "robots-disallowed"
     try:
         resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=REQUEST_TIMEOUT)
-        resp.raise_for_status()
-        return resp.text
+        if resp.status_code >= 400:
+            print(f"  fetch failed for {url}: HTTP {resp.status_code}")
+            return None, str(resp.status_code)
+        return resp.text, "ok"
+    except requests.exceptions.Timeout:
+        print(f"  fetch failed for {url}: timeout")
+        return None, "timeout"
+    except requests.exceptions.ConnectionError:
+        print(f"  fetch failed for {url}: connection error")
+        return None, "connection-error"
     except Exception as e:
         print(f"  fetch failed for {url}: {e}")
-        return None
+        return None, "error"
 
 
 def normalized_text_hash(html):
@@ -102,13 +114,22 @@ def step_recheck_known_entries(rodas):
         if not url or url.startswith("https://www.facebook.com") or "instagram.com" in url:
             continue
         print(f"- {r['name']} -> {url}")
-        html = fetch_text(url)
+        html, status = fetch_text(url)
         time.sleep(POLITE_DELAY_SECONDS)
+
+        # Always record what happened this run, even on failure — a dead
+        # link should be visible, not silently skipped.
+        r["lastPolled"] = today
+        r["lastFetchStatus"] = status
+
         if html is None:
+            r["consecutiveFailures"] = r.get("consecutiveFailures", 0) + 1
+            print(f"  -> fetch failed ({status}); consecutiveFailures={r['consecutiveFailures']}")
             continue
+
+        r["consecutiveFailures"] = 0
         new_hash, _ = normalized_text_hash(html)
         old_hash = r.get("contentHash")
-        r["lastPolled"] = today
         if old_hash is not None and old_hash != new_hash:
             r["changedSinceLastCheck"] = True
             print("  -> page content changed since last check")

@@ -71,12 +71,15 @@ editor. Each entry looks like:
   "lastChecked": "YYYY-MM-DD",
   "contentHash": null,
   "lastPolled": null,
-  "changedSinceLastCheck": false
+  "changedSinceLastCheck": false,
+  "lastFetchStatus": null,
+  "consecutiveFailures": 0
 }
 ```
 
 Copy an existing block, edit the text fields, and leave `contentHash` /
-`lastPolled` / `changedSinceLastCheck` as `null` / `null` / `false` for a
+`lastPolled` / `changedSinceLastCheck` / `lastFetchStatus` /
+`consecutiveFailures` as `null` / `null` / `false` / `null` / `0` for a
 brand-new entry — the weekly job fills those in on its own. Get `lat`/`lon`
 for a city by searching e.g. "Porto latitude longitude". Save the file and
 push/re-upload it to GitHub.
@@ -99,6 +102,16 @@ push/re-upload it to GitHub.
 - **contentHash / lastPolled / changedSinceLastCheck** — bot-managed,
   don't hand-edit these except to reset `changedSinceLastCheck` to `false`
   once you've looked into a change.
+- **lastFetchStatus / consecutiveFailures** — also bot-managed. Every
+  weekly run records whether that entry's `checkUrl` actually loaded:
+  `lastFetchStatus` is `"ok"` on success, or a short reason why not
+  (`"404"`, `"403"`, `"timeout"`, `"connection-error"`, etc.), and
+  `consecutiveFailures` counts how many runs in a row have failed,
+  resetting to `0` on the next success. This is what drives the grey
+  **"link unreachable"** marker on the map (shown once
+  `consecutiveFailures` reaches 2) — without it, a dead link would look
+  identical to one that's simply unchanged. If you see that marker, the
+  `checkUrl` needs a human look and probably a replacement.
 
 ## Adapting this for another region
 
