@@ -3,10 +3,13 @@
 Weekly refresh for the Choro Map.
 
 What this does (and does NOT do): re-visits every confirmed entry in
-data/rodas.json whose checkUrl is NOT social media, and notes whether the
-page's text has changed since the last run (a cheap, free "did anything
-move?" signal — it does not understand the page, it just hashes the
-visible text).
+data/rodas.json whose checkUrl is NOT social media. On a successful fetch,
+it notes whether the page's text has changed since the last run (a cheap,
+free "did anything move?" signal — it does not understand the page, it
+just hashes the visible text). Either way — success or failure — it
+records lastPolled and lastFetchStatus for that entry, and updates a
+consecutiveFailures counter (up on failure, reset to 0 on success), so a
+dead link shows up on the map instead of silently looking unchanged.
 
 Deliberately out of scope, on purpose:
   - Facebook/Instagram: not fetchable without login, and the whole point
