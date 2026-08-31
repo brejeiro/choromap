@@ -13,12 +13,12 @@
     "notes": "Long-running choro promotion group in Portugal (led by Tercio Borges). Also covered by Público and RTP.",
     "lastChecked": "2026-08-29",
     "contentHash": null,
-    "lastPolled": null,
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/clubedochorodelisboa/",
     "socialLabel": "Instagram",
-    "lastFetchStatus": null,
-    "consecutiveFailures": 0
+    "lastFetchStatus": "connection-error",
+    "consecutiveFailures": 1
   },
   {
     "name": "Clube do Choro do Porto",
@@ -33,12 +33,12 @@
     "checkUrlLabel": "Câmara Municipal de Matosinhos",
     "notes": "Founded in 2018 by musician Chico Bastos with Saulo Giovannini and Felipe Bastos. Runs the \"Choro no Nery\" roda series at Teatro Municipal de Matosinhos, ticketed through the municipality (constantinonery.bol.pt). Also occasionally listed on Porto's own cultural agenda.",
     "lastChecked": "2026-08-30",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "0d4a9f7433f7d841a376836346eca8095c8cd2bdcf32110fce14e488d300e318",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/clubedochoroporto/",
     "socialLabel": "Facebook",
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   },
   {
@@ -54,12 +54,12 @@
     "checkUrlLabel": "Official site",
     "notes": "Active since 2001; also see festivaldechorodeparis.org for the annual festival + workshops.",
     "lastChecked": "2026-08-29",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "6d6c6be0bb7bd953bd3ddbeb83b2459caa78430bb9b51e29536a7cb42750db17",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/clubduchorodeparis/",
     "socialLabel": "Instagram",
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   },
   {
@@ -117,12 +117,12 @@
     "checkUrlLabel": "Official site",
     "notes": "Good hub for London's wider scene. Own Instagram: @londonchorofestival. Own YouTube channel: @LondonChoroFestival.",
     "lastChecked": "2026-08-30",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "6002776d6cbf7378a03b05dfcaab9336f2332c91ef4cea227036a839b8d7451a",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/londonchorofestival/",
     "socialLabel": "Instagram",
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   },
   {
@@ -138,12 +138,12 @@
     "checkUrlLabel": "Three Colts Tavern",
     "notes": "The venue itself lists this as a recurring fortnightly jam, part of the London Choro Festival scene. Direct contact: info@threecoltstavern.co.uk (bookings@threecoltstavern.co.uk for reservations). Instagram @choroeast worth following too.",
     "lastChecked": "2026-08-30",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "5cd34e707b44dafd332a4e7e7e63954e9ac1a7a72cd4030ceb5388e7663b8e74",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/choroeast/",
     "socialLabel": "Instagram",
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   },
   {
@@ -181,12 +181,12 @@
     "notes": "Also occasionally listed on visit.brussels city agenda. Exact street address not independently confirmed — check the official page.",
     "lastChecked": "2026-08-29",
     "contentHash": null,
-    "lastPolled": null,
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/gc_pianofabriek/",
     "socialLabel": "Instagram",
-    "lastFetchStatus": null,
-    "consecutiveFailures": 0
+    "lastFetchStatus": "robots-disallowed",
+    "consecutiveFailures": 1
   },
   {
     "name": "Berliner Roda de Choro",
@@ -202,12 +202,12 @@
     "notes": "⚠ Organizer's own site states this roda is \"currently paused\" as of last check. Email info@matthiashaffner.com to ask if/when it resumes.",
     "contactEmail": "info@matthiashaffner.com",
     "lastChecked": "2026-08-29",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "4b1ecf7725f3ab232afcbec61071a2bd064ba7e1ef9966d0c949be4229a444bb",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/berlinerrodadechoro/",
     "socialLabel": "Facebook",
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   },
   {
@@ -224,12 +224,12 @@
     "notes": "Check the Deutsch-Brasilianische Gesellschaft (German-Brazilian Society) events calendar for current dates.",
     "lastChecked": "2026-08-29",
     "contentHash": null,
-    "lastPolled": null,
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/events/torstrasse-159-10115-berlin-germany/roda-de-choro-city-west/1369005844459886/",
     "socialLabel": "Facebook",
-    "lastFetchStatus": null,
-    "consecutiveFailures": 0
+    "lastFetchStatus": "robots-disallowed",
+    "consecutiveFailures": 1
   },
   {
     "name": "Roda de Choro @ Splendor Amsterdam",
@@ -245,12 +245,12 @@
     "notes": "Real venue with its own booking calendar — search/filter their agenda for \"choro\". Contact: info@splendoramsterdam.com",
     "contactEmail": "info@splendoramsterdam.com",
     "lastChecked": "2026-08-29",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "dba93408b7ec35e691b4784307b7af6e54eee0899115a10a44bd76f2636a604b",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/splendoramsterdam/",
     "socialLabel": "Instagram",
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   },
   {
@@ -330,12 +330,12 @@
     "notes": "This is Barcelona's official municipal cultural-centres website (not social media), which is a strong sign it's a real, city-supported activity — but the page blocks automated checking, so open the link yourself to see which centre and date is current.",
     "lastChecked": "2026-08-29",
     "contentHash": null,
-    "lastPolled": null,
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/CentresCivicsBCN/",
     "socialLabel": "Facebook",
-    "lastFetchStatus": null,
-    "consecutiveFailures": 0
+    "lastFetchStatus": "403",
+    "consecutiveFailures": 1
   },
   {
     "name": "Clube do Choro de Torino",
@@ -351,12 +351,12 @@
     "notes": "Organized by musician Marco Ruviaro, active in Turin's choro scene since ~2010 (see marcoruviaro.com). The article isn't dated, so confirm the weekly slots are still running before you go — this looks like the most \"joinable\" weekly roda on the whole map if current.",
     "lastChecked": "2026-08-29",
     "contentHash": null,
-    "lastPolled": null,
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/marcoruviaro/",
     "socialLabel": "Instagram",
-    "lastFetchStatus": null,
-    "consecutiveFailures": 0
+    "lastFetchStatus": "connection-error",
+    "consecutiveFailures": 1
   },
   {
     "name": "Roda de Choro — Corte dei Miracoli",
@@ -372,12 +372,12 @@
     "notes": "Corte dei Miracoli is a real, ongoing cultural venue (also listed on Fever and BookCity Milano), so it's a legitimate place to check — but choro nights there appear occasional rather than a fixed weekly date. A separate Facebook group \"Jam Session Brasiliana a Milano\" covers the wider informal scene.",
     "lastChecked": "2026-08-29",
     "contentHash": null,
-    "lastPolled": null,
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/associazionelataiga/",
     "socialLabel": "Facebook",
-    "lastFetchStatus": null,
-    "consecutiveFailures": 0
+    "lastFetchStatus": "robots-disallowed",
+    "consecutiveFailures": 1
   },
   {
     "name": "Chora Cambridge",
@@ -392,12 +392,12 @@
     "checkUrlLabel": "Official site",
     "notes": "Also listed by the University of Cambridge's Centre for Music Performance and CamJazzFest. Has a real contact email: choracambridge@gmail.com. One of the most reliably 'just show up' entries on the map. Occasional special rodas may run at other venues (e.g. the Sir Isaac Newton pub), sometimes around bank holidays — the official site currently only lists Panton Arms and The Granta, so treat any additional venues as worth watching for rather than confirmed.",
     "lastChecked": "2026-08-30",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "fede02c8064c180503eb3b379df9dbdf96f8a8a88d0d3317b10d443d276bfaca",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/choracambridge/",
     "socialLabel": "Instagram",
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   },
   {
@@ -434,12 +434,12 @@
     "checkUrlLabel": "Official site",
     "notes": "Run by Abdallah Harati and João Araújo. Has its own website plus a WhatsApp group (linked from the site) alongside Instagram/Facebook @choromuenchen — the website makes this a real non-social entry point even though day-to-day scheduling likely happens in the WhatsApp group.",
     "lastChecked": "2026-08-30",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "7a9f730c1dbb04d9c0d73fe38f3e1d9fb1e4cad25999d62ab8cdf2a63e50edea",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/choromuenchen/",
     "socialLabel": "Instagram",
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   },
   {
@@ -455,12 +455,12 @@
     "checkUrlLabel": "Kulturzentrum LUISE",
     "notes": "Organized by Lusofonia e.V. with Kulturzentrum LUISE. Real cultural centre with a phone number and email (info@luise-kultur.de). One day, but a good yearly anchor for Munich if the regular Choro München jam isn't running when you're there. No separate social account found for the festival itself — Choro München's own Instagram/Facebook (@choromuenchen) is the best social channel to watch.",
     "lastChecked": "2026-08-30",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "ca8f80427280c83de5a0da17c042357a4476ddf2085e1c2ce6013e77c2f08a35",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": null,
     "socialLabel": null,
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   },
   {
@@ -476,12 +476,12 @@
     "checkUrlLabel": "OBA",
     "notes": "OBA (obamusic.dk) runs this as one of their 'Community & Culture' programs; their own site doesn't publish a fixed venue or schedule, so check the events page directly or use their contact form (obamusic.dk/contacto).",
     "lastChecked": "2026-08-30",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "3e9c84722c5ce6290116e27f0a3720b49ed47ca2ac290ef68e4f1a71c6ac018f",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/obamusic1/",
     "socialLabel": "Facebook",
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   },
   {
@@ -498,12 +498,12 @@
     "notes": "The one confirmed event (organized by a group called Regional Massapê) had already ended by the time this was checked. Included as a real lead worth watching rather than a confirmed recurring roda — this Eventbrite search stays live for whatever they post next. No dedicated social media account found for this group.",
     "lastChecked": "2026-08-30",
     "contentHash": null,
-    "lastPolled": null,
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": null,
     "socialLabel": null,
-    "lastFetchStatus": null,
-    "consecutiveFailures": 0
+    "lastFetchStatus": "405",
+    "consecutiveFailures": 1
   },
   {
     "name": "Roda de Choro (rotating venues)",
@@ -519,12 +519,12 @@
     "notes": "Linked to the group Quero Quero Choro, which lists its own roda page directly on its website (queroquerochoro.com). Also occasionally covered by Strasbourg's own tourism site (visitstrasbourg.fr) and city agenda (jds.fr) — worth searching those directly since specific listings come and go.",
     "lastChecked": "2026-08-30",
     "contentHash": null,
-    "lastPolled": null,
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.facebook.com/p/Quero-Quero-Choro-100063463301140/",
     "socialLabel": "Facebook",
-    "lastFetchStatus": null,
-    "consecutiveFailures": 0
+    "lastFetchStatus": "connection-error",
+    "consecutiveFailures": 1
   },
   {
     "name": "Roda de Choro de Marseille (Zoumaï)",
@@ -560,12 +560,12 @@
     "checkUrlLabel": "Visit Leeds — What's On (search 'choro')",
     "notes": "Funded by Leeds City Council through the Leeds Cultural Investment Programme, which is a solid legitimacy signal for the underlying project. However, the specific listing page this entry used to link to (visitleeds.co.uk/.../roda-de-choro-samba/) has gone offline (404) as of 2026-08-30, and a search for a replacement dedicated page or organizer social account (search engines, Jazz Leeds listings, Leeds Cultural Investment Programme news) turned up nothing current. checkUrl now points to Visit Leeds' own live \"What's On\" listings page as a working fallback — search \"choro\" there by hand to see if the event has resurfaced under a new listing before relying on this entry.",
     "lastChecked": "2026-08-30",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "6741aa83b419431aecd152acbdeb043a02a82897f144fec747c8f5cc0ea5cda2",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": null,
     "socialLabel": null,
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   },
   {
@@ -624,12 +624,12 @@
     "contactEmail": "circoloodeon@gmail.com",
     "notes": "A real, organized ensemble blending Brazilian choro with Italian instrumental traditions (Romagnolo liscio, Bolognese filuzzi), grown out of years of choro rodas in Bologna. Shares musicians with Turin's Clube do Choro de Torino and with Choro Camp Italia.",
     "lastChecked": "2026-08-30",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "a06cf8c542c6ed4108652313ed215de0e9d05b810030350aa55b8c1cf5cb538a",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": null,
     "socialLabel": null,
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   },
   {
@@ -646,12 +646,12 @@
     "contactEmail": "info@choroderua.com",
     "notes": "Run by Choro de Rua (Marco Ruviaro and Barbara Piperno) — Ruviaro is also behind Turin's Clube do Choro de Torino and Bologna's Circolo Odeòn. A study/practice camp rather than a weekly roda, but a solid yearly anchor for Italy if the dates line up with a trip. Only one edition confirmed so far, so recurrence isn't guaranteed.",
     "lastChecked": "2026-08-30",
-    "contentHash": null,
-    "lastPolled": null,
+    "contentHash": "ab1560fe2de14719e441e63192968fcf221553363345611b3887c374e6a9b73e",
+    "lastPolled": "2026-08-31",
     "changedSinceLastCheck": false,
     "socialUrl": "https://www.instagram.com/chorocamp.italia/",
     "socialLabel": "Instagram",
-    "lastFetchStatus": null,
+    "lastFetchStatus": "ok",
     "consecutiveFailures": 0
   }
 ]
